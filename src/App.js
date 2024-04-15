@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./layout/Navbar";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddUser from "./users/AddUser";
+import EditUser from "./users/EditUser";
+import ViewUser from "./users/ViewUser";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import First from "./pages/First";
+import LoginFail from "./users/LoginFail";
+import AddTask from "./tasks/AddTask";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<First />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/adduser" element={<AddUser />} />
+          <Route path="/edituser/:id" element={<EditUser />} />
+          <Route path="/viewuser/:id" element={<ViewUser />} />
+          <Route path="/dashboard/:id" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/loginFail" element={<LoginFail />} />
+          <Route path="/addtask/:id" element={<AddTask />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
